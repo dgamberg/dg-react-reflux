@@ -1,4 +1,4 @@
-import * as types from './actions/actionTypes';
+import * as types from '../actions/actionTypes';
 //takes the current state and an action and returns a new state
 export default function courseReducer( state = [], action){
   // why we need a type in our action
