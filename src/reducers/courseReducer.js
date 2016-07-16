@@ -1,15 +1,22 @@
 import * as types from '../actions/actionTypes';
-//takes the current state and an action and returns a new state
-export default function courseReducer( state = [], action){
-  // why we need a type in our action
-  // Switch statement used in reducers
+import initialState from './initialState';
+
+export default function courseReducer( state = initialState.courses, action){
+
   switch(action.type){
-    case types.CREATE_COURSE: 
-      // ES6 spread operator   
-      // take an array, copy over the array to a new array and with an extra value
-      return [...state, Object.assign( {}, action.course )];
-    // the default when no match just return the state
-    default: 
-        return state;        
+    case types.LOAD_COURSES_SUCCESS:
+          return action.courses;
+    case types.CREATE_COURSE_SUCCESS:
+          return [
+            ...state, //spread operator copy of array, include the new course
+            Object.assign({}, action.course)
+          ];
+    case types.UPDATE_COURSE_SUCCESS:
+          return [ // filter all items in the list except the one being updated
+            ...state.filter(course => course.id !== action.course.id),
+            Object.assign({}, action.course)
+          ];
+    default:
+        return state;
   }
 }
