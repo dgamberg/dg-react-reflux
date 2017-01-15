@@ -41,3 +41,17 @@ export function saveCourse(course){
     });
   };
 }
+
+// THUNK
+export function deleteCourse(id){
+  //Thunks return a function that passes in dispatch
+  return function(dispatch){
+    dispatch(beginAjaxCall());
+    return courseApi.deleteCourse(id).then(courses => {
+      dispatch(deleteCourseSuccess(courses));
+    }).catch(error => {
+      dispatch(ajaxCallError());
+      throw(error);
+    });
+  };
+}

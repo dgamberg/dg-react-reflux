@@ -8,7 +8,7 @@ class App extends React.Component {
       <div className="container-fluid">
         <Header
           loading={this.props.loading}/>
-        {this.props.children}
+          {this.props.children}
       </div>
     );
   }

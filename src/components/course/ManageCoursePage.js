@@ -36,6 +36,13 @@ class ManageCoursePage extends React.Component {
     return this.setState({course: course});
   }
 
+  deleteCourse(id){
+    const field = event.target.id;
+    let course = this.state.course;
+    course[field] = event.target.value;
+    return this.setState({course: course});
+  }
+
   saveCourse(event){
     event.preventDefault();
     this.setState({saving: true});
